@@ -1,21 +1,24 @@
 package org.example.ejemplo.modelo;
 
-
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Hidden;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
 public class Categoria {
-    @Id
-    @Hidden
-    @GeneratedValue(generator = "system-uuid")
 
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Hidden
+    @Column(length = 32)
+    String oid;
+
+    @Column(length = 50)
+    String descripcion;
 }
